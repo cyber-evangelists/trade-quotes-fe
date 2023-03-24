@@ -14,11 +14,18 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "chakra-ui-carousel": "^1.0.7",
-    "eslint": "8.36.0",
+    "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-next": "13.2.4",
     "framer-motion": "^10.8.4",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }
