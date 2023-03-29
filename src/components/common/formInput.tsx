@@ -23,6 +23,7 @@ const FormInput = ({
 }: props) => {
   return (
     <Box
+    my={'10px'}
       w={"100%"}
       maxW={"520px"}
       p="5px 10px"

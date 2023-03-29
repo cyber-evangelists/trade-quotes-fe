@@ -14,9 +14,9 @@ const Reviews = () => {
         <Button  bg={'#E7E9ED'} rounded={'6px'} p='5px 15px' fontWeight={'semibold'} > Sync Review</Button>
         </Flex>
         <Text mb={'10px'}  fontWeight={'semibold'}  >Stay on top Trades to get more instant lead</Text>
-        <Flex align={'center'} fontWeight={'semibold '} >
+        <Flex flexDirection={{ base: 'column', md: "row" }} align={{ base: null, md: "center" }} fontWeight={'semibold '} >
         Clients rate Skilled 
-        <Flex align={'center'} mx='5px'> {stars.map((star,idx) => {
+        <Flex  align={'center'} mx='5px'> {stars.map((star,idx) => {
             if(star <= Math.ceil(total)){
             return(<StarIcon key={idx} />)}
             else 

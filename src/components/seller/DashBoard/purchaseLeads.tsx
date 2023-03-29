@@ -40,7 +40,7 @@ const PurchaseLeads = () => {
         Get Leads Credit and unlock access to a pool of potential customers.
         Access new leads. No recurring charges. Pay as you go.
       </Text>
-      <Flex align={"center"} gap={"10px"}>
+      <Flex  wrap={'wrap'} align={"center"} gap={"10px"}>
         {leads.map((lead, idx) => {
           return (
             <Box

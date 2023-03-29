@@ -7,7 +7,7 @@ import { SellerSideBarOptions } from "../../../mocks/sellerDashboardOptions";
 const SideBar = () => {
     const router = useRouter();
     return(
-    <Box width={'100%'} height={'100%'} maxWidth={'250px'} py={'10px'} paddingLeft={'30px'}>
+    <Box width={'100%'} display={{base: 'none', md: 'block' }} height={'100%'} maxWidth={'250px'} py={'10px'} paddingLeft={'30px'}>
         {SellerSideBarOptions.map((item,idx) => {
             return(
             <Flex onClick={() => {

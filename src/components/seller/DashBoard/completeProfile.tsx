@@ -19,7 +19,7 @@ const Completeprofile = () => {
         <Text mb={'10px'} fontSize={'22px'} fontWeight={'semibold'}  >🏆 Complete your profile and get reward</Text>
         <Text mb={'10px'}  fontWeight={'semibold'}  >Completing your profile is a great way to improve your chances of winning work!</Text>
         {Data.map((task,idx) => {
-            return(<Flex rounded={'12px'} my={'6px'} bg='#EDFFE3' w='100%' key={idx} align={'center'} justify={'space-between'} p='20px' >
+            return(<Flex flexDirection={{ base: 'column', md: "row" }} rounded={'12px'} my={'6px'} bg='#EDFFE3' w='100%' key={idx} align={{ base: null, md: "center" }} justify={'space-between'} p='20px' >
                 <Box>
                     <Text fontWeight={'semibold'} mb={'10px'}  >{task.title}</Text>
                     <Text color={'#268BFF'} mb={'10px'}  >{task.reward}</Text>

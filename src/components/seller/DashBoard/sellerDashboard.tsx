@@ -35,8 +35,9 @@ const SellerDashBoard = () => {
       };
 
   return (
-    <Box mb={'100px'} w={"100%"} h={"100%"} p={'20px 30px'}>
-      <Flex w={'100%'} justify={'space-between'}>
+    <Flex w={"100%"} h={"100%"} align={'center'} justify={'center'}  >
+    <Box mb={'100px'} w={"100%"} h={"100%"} maxWidth='1200px' p={{base: '20px 10px' , md:'20px 30px'}}>
+      <Flex flexDirection={{ base: 'column-reverse', md: "row" }} w={'100%'} justify={'space-between'}>
         <Text fontSize={'18px'} fontWeight={'semibold'}>
           {dateFormateHandler(Date.now()).dayName},{" "}
           {dateFormateHandler(Date.now()).monthName}{" "}
@@ -58,7 +59,7 @@ const SellerDashBoard = () => {
       </Flex>
       {!checkPayments ?  <Box>
       <SellerDetailsBlock formData={sellerData} openEdit={setIsEdit} isEdit={isEdit} handleChange={handlechange} />
-        {!isEdit &&  <Flex my='10px' gap={'10px'}>
+        {!isEdit &&  <Flex flexDirection={{ base: 'column', md: "row" }} my='10px' gap={'10px'}>
             <Box  w='100%' maxW={'350px'} p='10px 20px' minH={'100px'} border={'1px solid #E7E9ED'} rounded={'12px'}>
                 <Text mb={'20px'} fontSize={'22px'} color='#0D1E39' fontWeight={'semibold'}   >Let us know if you’re busy</Text>
                 <Flex align={'center'} gap={'10px'}>
@@ -93,6 +94,7 @@ const SellerDashBoard = () => {
         {!isEdit && <Reviews />} 
         </Box> : <CreditsBoard />}
     </Box>
+    </Flex>
   );
 };
 

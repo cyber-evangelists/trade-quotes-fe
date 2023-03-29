@@ -1,5 +1,7 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import PaymentBlock from "./paymentBlock";
 import PurchaseLeads from "./purchaseLeads";
+import TransactionTable from "./transactionTable";
 
 const CreditsBoard = () => {
   return (
@@ -39,6 +41,8 @@ const CreditsBoard = () => {
         </Text>
       </Box>
       <PurchaseLeads />
+      <PaymentBlock />
+      <TransactionTable />
     </Box>
   );
 };
