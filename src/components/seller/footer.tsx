@@ -1,4 +1,5 @@
 import { Box, Select, Text,Link,  Image, Flex} from "@chakra-ui/react";
+import FooterEndLinks from "./footerEndLinks";
 import FooterList from "./footerList";
 
 const List = [
@@ -61,15 +62,10 @@ const Footer = () => {
                     <option>United States</option>
                     <option>Australia</option></Select>
             </Flex>
-            
+            <FooterEndLinks />
             
             </Flex>
-            <Box w='100%' borderTop={'1px solid rgba(0, 0, 0, 0.1)'} p={'20px 0px'}>
-                <Text display={{base: 'none', md: 'inline' }} fontWeight={'semibold'} lineHeight={'150%'} fontSize={'14px'}>Copyright © 2023 Trade Quotes.  <Link>Terms & Conditions</Link> /   <Link>Cookie policy</Link> /  <Link>Privacy policy </Link></Text>
-                <Box display={{base: 'flex', md: 'none' }} flexDirection={'column'} fontWeight={'semibold'} lineHeight={'150%'} fontSize={'14px'}>
-                 <Link>Terms & Conditions</Link>   <Link>Cookie policy</Link>  <Link>Privacy policy </Link>Copyright © 2023 Trade Quotes. 
-                </Box>
-            </Box>
+           
 
         </Box>
 
