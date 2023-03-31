@@ -52,7 +52,7 @@ const SignupForm = () => {
 
     const handleSubmit = async () => {
       try {
-        await axios.post(`${urlapi}/profile/about/`, {}).then((res) => {
+        await axios.post(`/profile/about/`, {}).then((res) => {
           if (res.status === 200) {
             window.alert("Account made");
           } else {
