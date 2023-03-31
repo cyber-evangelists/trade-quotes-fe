@@ -3,6 +3,7 @@ import {
     Box, Button,Image, chakra, Flex, Input, Text,
   } from '@chakra-ui/react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import FirstPageSignUp from './firstPagesignup';
 import SecondPageSignUp from './secondPagesignup';
@@ -23,6 +24,7 @@ const tempData = {
 const SignupForm = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [signupData, setsignupData] = useState(tempData)
+    const router = useRouter()
 
 
     const handlechange = (event) => {
@@ -52,9 +54,30 @@ const SignupForm = () => {
 
     const handleSubmit = async () => {
       try {
-        await axios.post(`/profile/about/`, {}).then((res) => {
+        await axios.post(`http://194.59.165.140/test/app1/graphql`, {
+      query: `
+      mutation MyMutation($user: CreateUserInput!) {
+        createUser(user: $user) {
+          email
+          jwt
+          phoneNumber
+          id
+        }
+      }
+    `,
+      variables: {
+        user: {
+          email: signupData?.email,
+          password: 'test1234',
+          phoneNumber: signupData?.phone,
+        }
+      },
+    }).then((res) => {
           if (res.status === 200) {
             window.alert("Account made");
+            let temp = res.data.data.createUser
+            localStorage.setItem('user-login', {...temp})
+            router.push('/dashboard/seller')
           } else {
             window.alert("An error occured");
           }

@@ -7,6 +7,8 @@ import Link from 'next/link';
 import FooterEndLinks from '../components/seller/footerEndLinks';
 import FormInput from '../components/signup/formInput';
 import { useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 
 const tempData = {
@@ -18,6 +20,42 @@ const tempData = {
 
 export default function LogIn() {
   const [loginData, setloginData] = useState(tempData)
+  const router = useRouter()
+
+  const handleSubmit = async () => {
+    try {
+      await axios.post(`http://194.59.165.140/test/app1/graphql`, {
+    query: `
+    query MyQuery($user: UserInput!) {
+      user(user: $user) {
+        email
+        jwt
+        phoneNumber
+        id
+      }
+    }
+  `,
+    variables: {
+      user: {
+        email: loginData?.email,
+        password: loginData?.password,
+      }
+    },
+  }).then((res) => {
+        if (res.status === 200) {
+          window.alert("login Successfull");
+          let temp = res.data.data.user
+          localStorage.setItem('user-login', {...temp})
+          router.push('/dashboard/seller')
+
+        } else {
+          window.alert("An error occured");
+        }
+      });
+    } catch (err) {
+      window.alert(err || 'an error occured');
+    }
+  }
 
 
   const handlechange = (event) => {
@@ -36,7 +74,10 @@ export default function LogIn() {
       <Center flexGrow="1" position="relative" py="16">
         <Box position="absolute" bgColor="orange" top="50%" bottom="0" left="0" w="100%" />
         <Card mx="auto" w="538px" p="9">
-          <chakra.form>
+          <chakra.form  onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+          }} >
           <Text my={'30px'} bg={'linear-gradient(180deg, #0D1E39 0%, #636D7C 100%)'} backgroundClip={'text'} lineHeight={'110%'} fontSize="4xl" textAlign="center">Welcome Back</Text>
         
           <Text textAlign="center">Sign in to your account</Text>

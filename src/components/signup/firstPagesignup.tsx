@@ -41,7 +41,7 @@ const FirstPageSignUp = ({formdata, setform}) => {
 
     <Text fontSize="xs" mt="3">Let us know what type of work you do so we can match you up with relevant jobs</Text>
   
-    <FormInput value={formdata?.email} handleChange={handlechange} name={'email'} title={'Where can we send the job leads?'} type={'email'} placeHolder={'Phone number'} required={true} />
+    <FormInput value={formdata?.email} handleChange={handlechange} name={'email'} title={'Where can we send the job leads?'} type={'email'} placeHolder={'E-mail'} required={true} />
     <FormInput value={formdata?.phone} handleChange={handlechange} name={'phone'} title={'Where can we send the job leads?'} type={'text'} placeHolder={'Phone number'} required={true} />
     <FormInput value={formdata?.phoneAlt} handleChange={handlechange} name={'phoneAlt'} title={'We also send job leads via text message'} type={'text'} placeHolder={'Phone number'} required={true} />
     

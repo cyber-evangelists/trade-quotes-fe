@@ -11,65 +11,52 @@ import axios from 'axios';
   
   
   const tempData = {
-    email: '',
-    otp: ''
+    password: '',
+    confirmPassword: ''
   }
   
   
   
   export default function LogIn() {
     const [loginData, setloginData] = useState(tempData)
-    const [isOtp, setOtp] = useState(false);
     const router = useRouter()
-
+    const id = router.query.paramsid;
+    const headers = {
+        Authorization: `Bearer ${id}`,
+      };
+    
     const handleSubmit = async () => {
       try {
-        if(!isOtp){
+        if(loginData?.password !== loginData?.confirmPassword){
+            window.alert("passwords do not match!")
+            return null;
+        }
         await axios.post(`http://194.59.165.140/test/app1/graphql`, {
       query: `
-      mutation MyMutation($user: CreateUserOtpInput!) {
-        createUserOtp(user: $user)
-      }
-    `,
-      variables: {
-        user: {
-          email: loginData?.email,
-        }
-      },
-    }).then((res) => {
-          if (res.status === 200) {
-            if(res.data.data.createUserOtp)
-            {window.alert("Otp Sent To your Email");
-            setOtp(true)}
-          } else {
-            window.alert("An error occured");
+      mutation MyMutation($user: UpdateUserInput!) {
+        updateUser(user: $user){
+            email
           }
-        });}else{
-          await axios.post(`http://194.59.165.140/test/app1/graphql`, {
-      query: `
-      query MyQuery($user: UserInput!) {
-        user(user: $user) {
-          jwt
-        }
       }
     `,
       variables: {
         user: {
-          email: loginData?.email,
-          otp: loginData?.otp
+          password: loginData?.password,
         }
       },
-    }).then((res) => {
+    },{headers}).then((res) => {
           if (res.status === 200) {
-            window.alert("Redirecting To reset Page");
-            setOtp(false)
-            router.push(`/reset/${res.data.data.user.jwt}`)
-  
+            if(res.data.data.updateUser.email){
+            window.alert("Password Reset Successfull");
+            router.push('/login')
+        }else{
+            window.alert("Password Reset Failed");
+        }
+           
           } else {
             window.alert("An error occured");
           }
         });
-        }
       } catch (err) {
         window.alert(err || 'an error occured');
       }
@@ -95,13 +82,13 @@ import axios from 'axios';
             e.preventDefault();
             handleSubmit();
           }}  >
-            <Text my={'30px'} bg={'linear-gradient(180deg, #0D1E39 0%, #636D7C 100%)'} backgroundClip={'text'} lineHeight={'130%'} fontSize="4xl" textAlign="center">Forgot your password?</Text>
-        <Text textAlign="center" fontWeight={'semibold'} >Please enter the email address associated with your Klaviyo account.</Text>
+            <Text my={'30px'} bg={'linear-gradient(180deg, #0D1E39 0%, #636D7C 100%)'} backgroundClip={'text'} lineHeight={'130%'} fontSize="4xl" textAlign="center">Reset password</Text>
+        <Text textAlign="center" fontWeight={'semibold'} >Please enter the your new password.</Text>
             
            
-            <FormInput value={loginData?.email} handleChange={handlechange} name={'email'} title={'Email Address'} type={'email'} placeHolder={'Your Email'} required={true} />
-            { isOtp && <FormInput value={loginData?.otp} handleChange={handlechange} name={'otp'} title={'O T P'} type={'text'} placeHolder={'Your OTP'} required={true} />
-  }
+            <FormInput value={loginData?.password} handleChange={handlechange} name={'password'} title={'Password'} type={'password'} placeHolder={'password'} required={true} />
+            <FormInput value={loginData?.confirmPassword} handleChange={handlechange} name={'confirmPassword'} title={'Confirm Password'} type={'password'} placeHolder={'password'} required={true} />
+
        
             <Button type={'submit'} w='100%' colorScheme="orange" mt="3">Send a Password Reset Email</Button>
             <Text textAlign="center" mt={'20px'} fontWeight={'semibold'} >Did it just come back to you? <Link href={'/login'}>Log in.</Link></Text>
