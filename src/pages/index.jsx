@@ -9,8 +9,8 @@ import {
 import { Provider, Carousel } from 'chakra-ui-carousel';
 import { SearchIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import React from 'react';
+import Header from '../components/common/Header';
 
-import Header from 'components/common/Header';
 
 export default function Home() {
   return (

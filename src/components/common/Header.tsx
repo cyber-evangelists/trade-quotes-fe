@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ChevronDownIcon } from '@chakra-ui/icons';
 
-export default function Header() {
+ const Header = () => {
   return (
     <Flex px={8} pt={2} >
       <Box p='4'>
@@ -49,3 +49,6 @@ export default function Header() {
     </Flex>
   )
 }
+
+export default Header;
+
